@@ -1,19 +1,54 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { ArrowUpRight, ArrowRight, AudioLines, Box, Check, ChevronRight, CirclePlay, Fingerprint, Glasses, Headphones, Layers3, Menu, MoveUpRight, ShieldCheck, Sparkles, X } from 'lucide-react';
+import Brand from '@/components/Brand';
 
-import { MadeWithDyad } from "@/components/made-with-dyad";
-
-const Index = () => {
-  return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">
-          Start building your amazing project here!
-        </p>
-      </div>
-      <MadeWithDyad />
+export default function Index() {
+ const [menu, setMenu] = useState(false);
+ return <div className="overflow-hidden">
+  <div className="bg-[#e9eee7] py-2.5 text-center text-[10px] font-medium tracking-wide text-[#456354]">Um novo espaço para desenvolver a sua prática clínica. <span className="ml-2 hidden sm:inline">Conheça o treinamento imersivo <ArrowUpRight size={11} className="inline"/></span></div>
+  <header className="container-wide flex h-[88px] items-center justify-between gap-5 border-b border-border/70">
+   <Brand/>
+   <nav className="hidden items-center gap-8 text-[12px] text-[#626b64] lg:flex"><a href="#experiencia" className="text-primary">A experiência</a><a href="#como-funciona">Como funciona</a><a href="#pacientes">Pacientes virtuais</a><a href="#tecnologia">Tecnologia</a></nav>
+   <div className="hidden items-center gap-6 md:flex"><Link to="/acesso" className="text-xs font-medium">Entrar</Link><Link to="/plataforma" className="primary-button !px-4 !py-3 !text-xs">Explorar a plataforma <ArrowUpRight size={14}/></Link></div>
+   <button className="rounded-lg p-2 md:hidden" onClick={() => setMenu(!menu)} aria-label="Abrir menu">{menu ? <X/> : <Menu/>}</button>
+  </header>
+  {menu && <nav className="container-wide flex flex-col gap-4 border-b py-6 text-sm"><a href="#experiencia" onClick={()=>setMenu(false)}>A experiência</a><a href="#pacientes" onClick={()=>setMenu(false)}>Pacientes virtuais</a><Link to="/plataforma">Explorar a plataforma →</Link><Link to="/acesso">Entrar</Link></nav>}
+  <main>
+   <section className="container-wide relative pb-8 pt-8 lg:pt-11" id="experiencia">
+    <div className="grid gap-8 lg:grid-cols-[.83fr_1.17fr] lg:gap-9">
+     <div className="hero-enter flex flex-col items-start pb-3 pt-3 lg:py-9">
+      <span className="mb-6 flex items-center gap-2 rounded-full border border-[#d9e3d8] bg-[#edf2e9] px-3 py-1.5 text-[9px] font-semibold uppercase tracking-[.14em] text-[#506e50]"><span className="h-1.5 w-1.5 rounded-full bg-[#708e5b]"/> O futuro do treinamento clínico</span>
+      <h1 className="max-w-[520px] text-[43px] font-medium leading-[1.12] tracking-[-.065em] sm:text-[56px] lg:text-[clamp(43px,4.2vw,64px)]">A prática é virtual.<br/>A evolução é <span className="relative inline-block text-primary">real.<svg className="absolute -bottom-2 left-0 w-full" height="8" viewBox="0 0 118 8" fill="none"><path d="M2 6c34-5 72-5 114-2" stroke="#8eaa8c" strokeWidth="2.5" strokeLinecap="round"/></svg></span></h1>
+      <p className="mt-7 max-w-[365px] text-[14px] leading-[1.9] text-muted-foreground">Um consultório imersivo. Pacientes virtuais. Novas possibilidades para desenvolver sua escuta, sua empatia e sua confiança clínica.</p>
+      <div className="mt-7 flex flex-wrap gap-3"><Link to="/plataforma" className="primary-button">Conhecer a experiência <ArrowUpRight size={16}/></Link><Link to="/consultorio" className="outline-button !border-transparent !bg-transparent !px-2"><CirclePlay size={20} strokeWidth={1.4}/> Explorar em 3D</Link></div>
+      <div className="mt-9 flex items-center gap-3 text-[10px] text-muted-foreground"><span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#e7ede5]"><ShieldCheck size={14} className="text-primary"/></span><span>Um espaço seguro para aprender.<br/><span className="mt-0.5 inline-block text-[9px]">Personagens fictícios. Possibilidades reais de evolução.</span></span></div>
+     </div>
+     <div className="hero-enter relative min-h-[430px] rounded-2xl lg:min-h-[515px]" style={{animationDelay:'.1s'}}>
+      <div className="hero-room room-vignette absolute inset-0 overflow-hidden rounded-2xl" role="img" aria-label="Referência arquitetônica: ambiente acolhedor com sofá, madeira e luz natural"/>
+      <div className="absolute inset-0 rounded-2xl border border-[#00000008]"/>
+      <div className="absolute left-5 right-5 top-5 flex items-center justify-between"><span className="glass-label"><span className="h-1.5 w-1.5 rounded-full bg-primary"/> Seu próximo espaço de aprendizado</span><span className="flex h-8 w-8 items-center justify-center rounded-full border border-white/40 bg-white/70 text-primary backdrop-blur"><Box size={15}/></span></div>
+      <div className="absolute left-[24%] top-[48%] flex items-center gap-2"><span className="flex h-6 w-6 items-center justify-center rounded-full border border-white/70 bg-white/25"><span className="h-2 w-2 rounded-full bg-white"/></span><span className="rounded-full bg-white/90 px-3 py-1.5 text-[9px] text-[#455248] backdrop-blur">Presença em cada detalhe</span></div>
+      <Link to="/consultorio" className="absolute bottom-5 left-5 right-5 flex items-center justify-between gap-3 rounded-xl border border-white/60 bg-[#ffffffed] p-4 shadow-sm backdrop-blur-md transition hover:bg-white"><span className="flex items-center gap-3"><span className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#e8eee7] text-primary"><Glasses size={23} strokeWidth={1.4}/></span><span><span className="block text-xs font-semibold">Entre. Olhe ao redor. Sinta a diferença.</span><span className="mt-1 block text-[10px] text-muted-foreground">Explore o consultório 3D no seu navegador</span></span></span><span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary text-white"><ArrowUpRight size={15}/></span></Link>
+      <span className="absolute -bottom-5 right-1 text-[8px] text-muted-foreground">Imagem de referência arquitetônica · Ambiente interativo disponível na demonstração</span>
+     </div>
     </div>
-  );
-};
-
-export default Index;
+    <div className="mt-12 flex flex-wrap items-center justify-between gap-x-8 gap-y-5 border-y border-border py-5 text-[10px] text-muted-foreground"><span className="uppercase tracking-[.14em]">Tecnologia a serviço da presença</span><span className="flex items-center gap-2 text-xs font-medium text-[#52635c]"><Glasses size={20} strokeWidth={1.4}/> Projetado para Meta Quest 3</span><span className="flex items-center gap-2"><AudioLines size={17}/> Conversação em português</span><span className="flex items-center gap-2"><Box size={17}/> Experiência WebXR</span><span className="flex items-center gap-2"><Fingerprint size={17}/> Privacidade por princípio</span></div>
+   </section>
+   <section className="container-wide pb-14 pt-9" id="como-funciona">
+    <div className="flex flex-col justify-between gap-5 md:flex-row md:items-end"><div><p className="eyebrow mb-3">MAIS QUE SIMULAR. VIVENCIAR.</p><h2 className="text-3xl font-medium leading-[1.25] tracking-[-.045em] lg:text-[35px]">Um novo jeito de estar presente.<br/><span className="text-muted-foreground">Um novo jeito de aprender.</span></h2></div><p className="max-w-[345px] text-xs leading-7 text-muted-foreground">Da primeira pergunta à reflexão final, cada detalhe foi pensado para aproximar o treinamento da prática clínica.</p></div>
+    <div className="mt-8 grid gap-4 md:grid-cols-3">
+     {[
+      {Icon:Box, n:'01',title:'Sinta-se no consultório',text:'Um ambiente tridimensional acolhedor, com profundidade, luz natural e espaço para uma escuta atenta.',tag:'IMERSÃO QUE APROXIMA',color:'bg-[#edf0e8]'},
+      {Icon:AudioLines,n:'02',title:'Converse. Escute. Descubra.',text:'Histórias, personalidades e diferentes formas de se comunicar. Cada encontro é uma nova oportunidade.',tag:'PACIENTES VIRTUAIS COM IA',color:'bg-[#e8eeeb]'},
+      {Icon:Sparkles,n:'03',title:'Transforme prática em reflexão',text:'Reconheça pontos de atenção e desenvolva sua abordagem com feedback educacional sobre a sessão.',tag:'APRENDIZADO CONTÍNUO',color:'bg-[#f1eae1]'}
+     ].map(({Icon,n,title,text,tag,color})=><article key={n} className={`rounded-xl border border-[#e0e3da] p-6 ${color}`}><div className="mb-8 flex items-center justify-between"><span className="flex h-11 w-11 items-center justify-center rounded-xl border border-white bg-white/60 text-primary"><Icon size={22} strokeWidth={1.4}/></span><span className="font-['Manrope'] text-[10px] text-[#879087]">/ {n}</span></div><p className="mb-2.5 text-[8px] font-semibold tracking-[.15em] text-[#667266]">{tag}</p><h3 className="text-lg font-semibold tracking-[-.045em]">{title}</h3><p className="mt-3 max-w-[320px] text-xs leading-6 text-muted-foreground">{text}</p></article>)}
+    </div>
+   </section>
+   <section className="border-y border-border bg-[#eeeee7] py-14" id="pacientes"><div className="container-wide grid items-center gap-10 lg:grid-cols-2"><div className="relative h-[340px] overflow-hidden rounded-2xl"><img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=1000&q=85" alt="Interior acolhedor com móveis contemporâneos e tons naturais" className="h-full w-full object-cover" loading="lazy"/><span className="absolute bottom-4 left-4 rounded-lg bg-white/95 px-4 py-3 text-xs text-primary">Cada história pede uma nova escuta.</span></div><div className="lg:pl-10"><p className="eyebrow">HISTÓRIAS PARA DESENVOLVER A SUA</p><h2 className="mt-4 text-3xl font-medium leading-tight tracking-[-.045em]">Diferentes pessoas.<br/>Muitas formas de aprender.</h2><p className="mt-5 max-w-sm text-sm leading-7 text-muted-foreground">Explore cinco perfis fictícios e três níveis de dificuldade. Descubra o contexto de cada paciente conduzindo a entrevista, no seu ritmo.</p><div className="my-6 flex flex-wrap gap-2">{['Ansiedade simulada','Relacionamentos','Atenção e organização','Humor e rotina','Adolescência'].map(x=><span key={x} className="rounded-full border border-[#d4dbcf] bg-white/40 px-3 py-1.5 text-[10px] text-[#506153]">{x}</span>)}</div><Link to="/pacientes" className="inline-flex items-center gap-4 text-xs font-semibold text-primary">Conhecer os pacientes virtuais <ArrowRight size={16}/></Link><p className="mt-5 text-[9px] text-muted-foreground">Perfis exclusivamente educacionais. Não representam diagnósticos.</p></div></div></section>
+   <section className="container-wide py-16" id="tecnologia"><div className="grid gap-10 lg:grid-cols-[1fr_1.25fr]"><div><p className="eyebrow">TECNOLOGIA COM PROPÓSITO</p><h2 className="mt-4 text-3xl font-medium leading-tight tracking-[-.045em]">Menos barreiras.<br/>Mais possibilidades.</h2><p className="mt-5 max-w-sm text-sm leading-7 text-muted-foreground">Uma experiência pensada para realidade virtual, com acesso também pelo computador. Seu próximo consultório começa no navegador.</p><Link to="/configuracoes" className="mt-6 inline-flex items-center gap-3 text-xs font-medium text-primary">Compatibilidade e integrações <MoveUpRight size={14}/></Link></div><div className="grid gap-4 sm:grid-cols-2">{[{Icon:Glasses,title:'Realidade virtual',text:'WebXR com detecção de suporte ao headset. Compatibilidade física ainda sujeita a testes no Quest 3.'},{Icon:Headphones,title:'Voz em português',text:'Integração D-ID prevista para a conversação. Demonstração local identificada e independente.'},{Icon:ShieldCheck,title:'Privacidade no centro',text:'Sem gravação de áudio ou vídeo. Transcrição apenas com consentimento explícito.'},{Icon:Layers3,title:'Evolução no seu ritmo',text:'Iniciante, intermediário e avançado. Explore diferentes objetivos de entrevista.'}].map(({Icon,title,text})=><div key={title} className="rounded-xl border bg-white/50 p-5"><Icon className="mb-4 text-primary" size={23} strokeWidth={1.4}/><h3 className="text-sm font-semibold">{title}</h3><p className="mt-2 text-xs leading-6 text-muted-foreground">{text}</p></div>)}</div></div></section>
+   <section className="container-wide pb-14"><div className="flex flex-col items-start justify-between gap-7 rounded-2xl bg-[#174f48] p-8 text-white md:flex-row md:items-center md:p-11"><div><p className="mb-3 text-[9px] tracking-[.2em] text-[#c4d7b8]">SEU PRÓXIMO PASSO É UMA EXPERIÊNCIA</p><h2 className="text-2xl font-medium tracking-[-.04em] md:text-3xl">Mais presença na sua formação.</h2><p className="mt-3 text-xs text-[#d1dfd7]">Conheça o espaço onde tecnologia e cuidado se encontram.</p></div><Link to="/plataforma" className="inline-flex items-center gap-6 rounded-lg bg-[#e8eddf] px-6 py-4 text-xs font-semibold text-[#234d40]">Explorar a demonstração <ArrowUpRight size={16}/></Link></div></section>
+  </main>
+  <footer className="container-wide flex flex-col justify-between gap-6 border-t py-8 md:flex-row md:items-center"><Brand/><p className="text-[10px] text-muted-foreground">© {new Date().getFullYear()} VR CLINIC AI · Tecnologia para aprender a cuidar.</p><Link to="/privacidade" className="text-[10px] text-muted-foreground">Privacidade e uso educacional <ChevronRight size={11} className="inline"/></Link></footer>
+ </div>;
+}
